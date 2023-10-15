@@ -27,8 +27,14 @@ fi
 ####################
 
 function catchup() {
-  sleep 5
-  goal node catchup --force --min 1000000
+  FILE=/algod/data/catchuped
+  if [[ -f "$FILE" ]]; then
+    echo "Already Fast-catchuped"
+  else
+    sleep 5
+    goal node catchup --force --min 1000000
+  fi
+  
 }
 
 function start_public_network() {
